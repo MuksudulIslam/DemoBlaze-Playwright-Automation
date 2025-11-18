@@ -1,33 +1,41 @@
-import { th } from "@faker-js/faker";
 import { BasePage } from "./BasePage";
 
 export class SignupPage extends BasePage {
-
     constructor(page) {
         super(page);
 
-        this.signupNavButton = page.locator('#signin2');
+        this.signupNavButton = '#signin2';
+        this.usernameInput = '#sign-username';
+        this.passwordInput = '#sign-password';
+        this.signupButton = 'button:has-text("Sign up")';
+        this.modalSelector = '#signInModal';
+    }
 
-        this.usernameInput = page.locator('#sign-username');
+    async clickSignupButton() {
+        await this.page.click(this.signupNavButton);
+        await this.page.waitForSelector(this.modalSelector, { state: 'visible' });
+    }
 
-        this.passwordInput = page.locator('#sign-password');
+    async fillCredentials(username, password) {
+        await this.page.fill(this.usernameInput, username);
+        await this.page.fill(this.passwordInput, password);
+    }
 
-        this.signupButton = page.locator('button:has-text("Sign up")');
+    async clickSignup() {
+        await this.page.click(this.signupButton);
     }
 
     async signup(username, password) {
-
-        await this.page.click(this.signupNavButton);
-        await this.page.waitForSelector('#signInModal', { state: 'visible' });
-
-        await this.page.fill(this.usernameInput, username);
-        await this.page.timeout(500);
-
-        await this.page.fill(this.passwordInput, password);
-        await this.page.timeout(500);
-
-        await this.page.click(this.signupButton);
-        aw
-    
+        await this.clickSignupButton();
+        await this.fillCredentials(username, password);
+        await this.clickSignup();
     }
-}
+
+    async isModalVisible() {
+        return await this.page.locator(this.modalSelector).isVisible();
+    }
+
+    async isModalHidden() {
+        return await this.page.locator(this.modalSelector).isHidden();
+    }
+};

@@ -4,7 +4,7 @@ export class LogoutPage extends BasePage {
 
     constructor(page) {
         super(page);
-        this.logoutNavButton = page.locator('#logout2');
+        this.logoutNavButton = ('#logout2');
     }
 
     async logout() {

@@ -5,21 +5,21 @@ export class CartPage extends BasePage {
 
     constructor(page) {
         super(page);
-        this.placeOrderButton = page.locator('button:has-text("Place Order")');
+        this.placeOrderButton = ('button:has-text("Place Order")');
 
-        this.nameInput = page.locator('#name');
+        this.nameInput = ('#name');
 
-        this.countryInput = page.locator('#country');
+        this.countryInput = ('#country');
 
-        this.cityInput = page.locator('#city');
+        this.cityInput = ('#city');
 
-        this.creditCardInput = page.locator('#card');
+        this.creditCardInput = ('#card');
 
-        this.monthInput = page.locator('#month');
+        this.monthInput = ('#month');
 
-        this.yearInput = page.locator('#year');
+        this.yearInput = ('#year');
 
-        this.purchaseButton = page.locator('button:has-text("Purchase")');
+        this.purchaseButton = ('button:has-text("Purchase")');
 
 
     }
