@@ -5,11 +5,11 @@ export class LoginPage extends BasePage {
     constructor(page) {
         super(page);
         
-        this.loginNavButton = ('#login2');
-        this.usernameInput = ('#loginusername');
-        this.passwordInput = ('#loginpassword');
-        this.loginButton = ('button:has-text("Log in")');
-        this.modalSelector = '#loginInModal';
+        this.loginNavButton = '#login2';
+        this.usernameInput = '#loginusername';
+        this.passwordInput = '#loginpassword';
+        this.loginSubmitButton = 'button[onclick="logIn()"]';
+        this.modalSelector = '#logInModal';
     }
 
     async ClickLoginNavButton() {
@@ -26,7 +26,7 @@ export class LoginPage extends BasePage {
     };
 
     async LoginSubmit() {
-        await this.page.click(this.loginButton);
+        await this.page.click(this.loginSubmitButton);
         await this.page.waitForTimeout(1000);
     };
 

@@ -1,8 +1,14 @@
-import { faker } from "@faker-js/faker";
+import { fa, faker } from "@faker-js/faker";
+
+const randomString = faker.string.alphanumeric({length: 4}).toLowerCase();
+const randomNumber = faker.string.numeric({ length: 3 });
 
 export const testData = {
   newUser: {
-    username: faker.internet.username().toLowerCase(),
+    // username: faker.internet.person.fullName({length: 5}).toLowerCase() + "_" + faker.string.numeric({ length: 3 }),
+    // password: faker.internet.password({ length: 10 }).toLowerCase()
+
+    username: randomString + "_" + randomNumber,
     password: faker.internet.password({ length: 10 }).toLowerCase()
   },
 
@@ -22,3 +28,7 @@ export const testData = {
 
   baseURL: "https://www.demoblaze.com/"
 };
+
+export function generateUniqueUsername() {
+  return `user_${Date.now()}_${faker.string.alphanumeric({ length: 3 }).toLowerCase()}`;
+}
